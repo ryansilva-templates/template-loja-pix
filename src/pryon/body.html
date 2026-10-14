@@ -1,0 +1,319 @@
+<!-- ============================================================================
+     LAYOUT PRYON (v3) — identidade visual do template PV de produto físico
+     (github.com/andreluiiss7-ship-it/template-pv-produto-fisico), composição
+     própria para produto físico. Conteúdo: config `pv.*` (+ `pv.galeria`).
+
+     GANCHOS DA MÁQUINA (app.js) que este arquivo NÃO pode perder:
+       .of-kit[data-i] com [data-price]/[data-old] dentro  -> troca de kit
+       #hero-price #hero-old #disc-badge #perday-txt #hero-kit -> 1ª dobra
+       #vl-perday             -> número grande da âncora de valor
+       .buycta                -> botão de compra DENTRO do conteúdo (nunca na barra)
+       [data-open-checkout]   -> abre o modal Pix ([data-kit] escolhe o kit antes)
+       .stickycta + .sk-kit[data-idx] com <span><b>  -> barra fixa
+       #ofKits                -> para onde o "Trocar kit" do modal rola
+       #scn-valor + .vl-dots button + --b1..--b3     -> âncora (app.js gira)
+     ============================================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="p-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="p-lua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="p-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="p-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6z"/></symbol>
+  <symbol id="p-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h13v11H1z"/><path d="M14 8h4l4 4v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="p-zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></symbol>
+  <symbol id="p-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="p-pix" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l4 4-4 4-4-4z"/><path d="M2 12l4-4 4 4-4 4z"/><path d="M22 12l-4-4-4 4 4 4z"/><path d="M12 14l4 4-4 4-4-4z"/></symbol>
+  <symbol id="p-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="p-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="p-camadas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7l10-5Zm-10 10 10 5 10-5M2 17l10 5 10-5"/></symbol>
+  <symbol id="p-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></symbol>
+  <symbol id="p-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+</svg>
+
+<div class="orbs" aria-hidden="true"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span></div>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ================ TOPBAR ROTATIVA ================ -->
+<div class="topbar">
+  <div class="tb-rot" aria-live="polite">
+{{#each pv.topbar}}    <span class="tb-item {{#if @first}}on{{/if}}"><svg class="ic"><use href="#p-{{icone}}"></use></svg> <span>{{html}}</span></span>
+{{/each}}  </div>
+</div>
+
+<!-- ================ NAV ================ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#oferta">{{marca.nome}}<span>.</span></a>
+    <a class="nav-cta" href="#kits">{{pv.navCta}}</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ================ HERO ================ -->
+<section class="hero" id="oferta"><div class="wrap"><div class="hero-grid">
+
+  <div class="hero-media">
+    <div class="gal" data-gal>
+      <span class="disc-badge"><b id="disc-badge">-{{descontoPadrao}}%</b><span>{{pv.selo}}</span></span>
+      <div class="gal-track" data-gal-trilho tabindex="0" aria-label="Fotos do kit">
+{{#each pv.galeria}}        <figure class="gal-slide"><img src="public/images/loja/{{src}}.webp" srcset="public/images/loja/{{src}}-480.webp 480w, public/images/loja/{{src}}.webp 900w" sizes="(min-width:900px) 520px, 100vw" width="900" height="900" alt="{{alt}}" {{#if @first}}fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async"></figure>
+{{/each}}      </div>
+      <span class="hero-glass hg1" aria-hidden="true"><span class="vb-ic"><svg><use href="#p-camadas"></use></svg></span><b>{{pv.vidros.0}}</b></span>
+      <span class="hero-glass hg2" aria-hidden="true"><span class="vb-ic"><svg><use href="#p-lua"></use></svg></span><b>{{pv.vidros.1}}</b></span>
+      <button class="gal-arrow prev" type="button" aria-label="Foto anterior" data-gal-ant><svg><use href="#p-chev"></use></svg></button>
+      <button class="gal-arrow next" type="button" aria-label="Próxima foto" data-gal-prox><svg><use href="#p-chev"></use></svg></button>
+      <div class="gal-dots" aria-hidden="true">{{#each pv.galeria}}<i {{#if @first}}class="on"{{/if}}></i>{{/each}}</div>
+    </div>
+    <div class="gal-thumbs" aria-label="Escolher foto">
+{{#each pv.galeria}}      <button type="button" class="gal-thumb {{#if @first}}on{{/if}}" data-gal-ir="{{@index}}" aria-label="Foto {{@num}}"><img src="public/images/loja/{{src}}-mini.webp" width="75" height="75" alt="" loading="lazy"></button>
+{{/each}}    </div>
+  </div>
+
+  <div class="hero-copy">
+    <div class="hero-pill"><span class="hp-ic"><svg><use href="#p-spark"></use></svg></span><span class="hp-tx"><b>{{pv.pilula}}</b><span>{{pv.pilulaSub}}</span></span></div>
+    <h1 class="h1">{{pv.titulo}}<span class="h1-l2">{{pv.tituloLinha2}}</span></h1>
+    <p class="sub">{{pv.sub}}</p>
+
+    <div class="kit-lbl" id="hero-kit">{{ofertaPadrao.nome}} · {{ofertaPadrao.desc}}</div>
+    <div class="price-row">
+      <span class="price-now" id="hero-price">{{ofertaPadrao.precoFmt}}</span>
+      <span class="price-old" id="hero-old">{{ofertaPadrao.deFmt}}</span>
+    </div>
+    <div class="price-hint"><svg class="ic"><use href="#p-pix"></use></svg> {{pv.pixDica}} · <span id="perday-txt">{{hero.perDiaPrefixo}} {{ofertaPadrao.perDiaFmt}} {{hero.perDiaSufixo}}</span></div>
+
+    <div class="ksel">
+      <p class="ksel-lbl">{{pv.escolhaRotulo}}</p>
+      <div class="of-kits" id="ofKits" role="radiogroup" aria-label="Escolha a quantidade de kits">
+{{#each ofertas}}        <button type="button" role="radio" aria-checked="{{checked}}" class="of-kit {{sel}}" data-i="{{idx}}" data-offer="{{id}}">
+          {{#if selo}}<span class="tag {{#if destaque}}tag-hot{{/if}}">{{selo}}</span>{{/if}}
+          <span class="radio" aria-hidden="true"></span>
+          <span class="imgs" aria-hidden="true">{{#each unidadesArr}}<img src="public/images/loja/kit-mini.webp" width="75" height="75" alt="" loading="lazy">{{/each}}</span>
+          <span class="kinfo"><span class="kname">{{rotulo}}</span><span class="kper">{{sub}}</span>{{#if brinde}}<span class="kgift">🎁 {{$.pv.brindeCurto}}</span>{{/if}}</span>
+          <span class="kprice"><b data-price="{{idx}}">{{precoFmt}}</b><s data-old="{{idx}}">{{deFmt}}</s></span>
+        </button>
+{{/each}}      </div>
+{{#if pv.brindeChamada}}      <p class="ksel-gift"><img src="public/images/loja/{{pv.brindeImagem}}.webp" alt="" width="40" height="40" loading="lazy"><span>{{pv.brindeChamada}}</span></p>
+{{/if}}
+      <p class="ksel-nota">{{pv.riscadoNota}}</p>
+    </div>
+
+    <div class="save-row"><span class="save-ic"><svg><use href="#p-check"></use></svg></span><span>{{pv.economiaAntes}} <b data-sel-economia>{{ofertaPadrao.economiaFmt}}</b> {{pv.economiaDepois}}</span></div>
+
+    <button class="btn big pulse buycta" type="button" data-open-checkout><span>{{pv.cta}} · <span data-sel-preco>{{ofertaPadrao.precoFmt}}</span></span><svg class="ic"><use href="#p-chev"></use></svg></button>
+
+    <div class="trust-row">
+{{#each pv.confianca}}      <div><span class="ico"><svg class="ic"><use href="#p-{{icone}}"></use></svg></span> {{texto}}</div>
+{{/each}}    </div>
+
+{{#if pv.ugc.videos}}    <!-- Vídeos de quem usa (pv.ugc). Prévias de 6 s sem som nas bolinhas (só
+         carregam quando aparecem); o toque abre o vídeo completo com som.
+         Use SÓ vídeos com direito de uso (seus, de clientes reais, UGC contratado). -->
+    <div class="ugc">
+      <p class="ugc-t"><b>{{pv.ugc.titulo}}</b> <span>{{pv.ugc.sub}}</span></p>
+      <div class="ugc-row">
+{{#each pv.ugc.videos}}        <button type="button" class="ugc-b" data-ugc="{{n}}" aria-label="Assistir o vídeo {{n}} com som"><video data-src="public/media/ugc/previa-{{n}}.mp4" poster="public/media/ugc/capa-{{n}}.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><span class="ugc-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></button>
+{{/each}}      </div>
+    </div>
+{{/if}}  </div>
+
+</div></div></section>
+
+<!-- ================ POR DENTRO DO KIT ================ -->
+<section class="sec" id="dentro"><div class="wrap">
+  <div class="sec-hd rv"><p class="eyebrow">{{pv.dentro.olho}}</p><h2>{{pv.dentro.titulo}}</h2><p class="lead">{{pv.dentro.lead}}</p></div>
+  <div class="prod-grid">
+{{#each pv.dentro.itens}}    <article class="prod tilt-card rv">
+      <div class="prod-img prod-img--{{tom}}"><img src="public/images/loja/{{foto}}.webp" width="600" height="600" alt="{{alt}}" loading="lazy" decoding="async"><span class="prod-n">{{@pad}}</span></div>
+      <div class="prod-body">
+        <span class="prod-layer"><svg><use href="#p-camadas"></use></svg>{{camada}}</span>
+        <h3>{{nome}} <small>{{tamanho}}</small></h3>
+        <p>{{texto}}</p>
+      </div>
+    </article>
+{{/each}}  </div>
+  <details class="formula rv">
+    <summary><span class="formula-ic"><svg><use href="#p-camadas"></use></svg></span>{{pv.dentro.formulaRotulo}}<svg class="ic faq-ic"><use href="#p-plus"></use></svg></summary>
+    <div class="formula-body">
+{{#each pv.dentro.formula}}      <div class="formula-it"><h4>{{p}}</h4><p>{{r}}</p></div>
+{{/each}}    </div>
+  </details>
+</div></section>
+
+<!-- ================ COMO O KIT AGE (palco, 4 passos) ================ -->
+<section class="sec scn" id="age">
+  <div class="wrap"><div class="sec-hd rv"><p class="eyebrow">{{pv.age.olho}}</p><h2>{{pv.age.titulo}}</h2><p class="lead">{{pv.age.lead}}</p></div></div>
+  <div class="sv ps-sv" data-palco style="--a0:1">
+    <div class="ps-tint ps-tint-0"></div><div class="ps-tint ps-tint-1"></div><div class="ps-tint ps-tint-2"></div><div class="ps-tint ps-tint-3"></div>
+    <div class="ps-rail" role="tablist" aria-label="Passos">
+{{#each pv.age.passos}}      {{#if @first}}{{else}}<span class="ps-rail-track"><i class="ps-rail-fill" data-fill="{{@index}}"></i></span>{{/if}}<button type="button" class="ps-dot {{#if @first}}on{{/if}}" role="tab" aria-selected="{{#if @first}}true{{else}}false{{/if}}" aria-controls="ps-{{@index}}" data-dot="{{@index}}" aria-label="Passo {{@num}}: {{fantasma}}">{{@num}}</button>
+{{/each}}    </div>
+{{#each pv.age.passos}}    <div class="ps-act ps-act-{{@index}}" id="ps-{{@index}}" role="tabpanel">
+      <span class="ps-ghost" aria-hidden="true">{{fantasma}}</span>
+      <span class="ps-eyebrow"><b>{{@num}}</b> {{olho}}</span>
+      <div class="ps-fig">
+        <i class="ps-glow"></i><i class="ps-ring"></i><i class="ps-ring ps-ring-2"></i>
+        <i class="ps-part ps-pa"></i><i class="ps-part ps-pb"></i><i class="ps-part ps-pc"></i><i class="ps-part ps-pd"></i>
+        <span class="ps-tag ps-tag-l"><b>{{vidroE.b}}</b>{{vidroE.t}}</span>
+        <span class="ps-tag ps-tag-r"><b>{{vidroD.b}}</b>{{vidroD.t}}</span>
+        <span class="ps-photo"><img src="public/images/loja/{{foto}}.webp" width="600" height="600" alt="" loading="lazy" decoding="async"></span>
+      </div>
+      <h3>{{tituloA}} <em>{{tituloEm}}</em></h3>
+      <p>{{texto}}</p>
+      <div class="ps-chips">{{#each chips}}<span>{{.}}</span>{{/each}}</div>
+    </div>
+{{/each}}  </div>
+</section>
+
+<!-- ================ VITRINE EM MOVIMENTO ================ -->
+<section class="sec" id="resultados">
+  <div class="wrap"><div class="sec-hd rv"><p class="eyebrow">{{pv.vitrine.olho}}</p><h2>{{pv.vitrine.titulo}}</h2><p class="lead">{{pv.vitrine.lead}}</p></div></div>
+  <div class="vmarquee"><div class="vtrack">
+{{#each pv.vitrine.itens}}    <figure class="vidcard"><img src="public/images/loja/{{foto}}.webp" width="600" height="750" alt="" loading="lazy" decoding="async"><figcaption class="cap">{{titulo}}</figcaption></figure>
+{{/each}}{{#each pv.vitrine.itens}}    <figure class="vidcard" aria-hidden="true"><img src="public/images/loja/{{foto}}.webp" width="600" height="750" alt="" loading="lazy" decoding="async"><figcaption class="cap">{{titulo}}</figcaption></figure>
+{{/each}}  </div></div>
+  <ul class="sr">{{#each pv.vitrine.itens}}<li>{{titulo}}</li>{{/each}}</ul>
+</section>
+
+<!-- ================ COMO USAR ================ -->
+<section class="mainvid" id="como-usar"><div class="wrap"><div class="mv-grid">
+  <div class="mv-box rv">
+    <img src="public/images/loja/rotina.webp" width="900" height="707" alt="{{pv.rotina.imagemAlt}}" loading="lazy" decoding="async">
+{{#each pv.rotina.vidros}}    <span class="vbadge vb{{@num}}"><span class="vb-glass"><span class="vb-ic"><svg><use href="#p-{{icone}}"></use></svg></span><b>{{b}}<small>{{t}}</small></b></span></span>
+{{/each}}  </div>
+  <div class="mv-side">
+    <div class="sec-hd sec-hd--l rv"><p class="eyebrow">{{pv.rotina.olho}}</p><h2>{{pv.rotina.titulo}}</h2><p class="lead">{{pv.rotina.lead}}</p></div>
+    <ol class="mv-quotes">
+{{#each pv.rotina.passos}}      <li class="mvq rv"><span class="qic"><svg><use href="#p-{{icone}}"></use></svg></span><div><b class="mvq-t">{{titulo}}</b><p>{{texto}}</p></div></li>
+{{/each}}    </ol>
+    <p class="nota rv">{{pv.rotina.nota}}</p>
+  </div>
+</div></div></section>
+
+<!-- ================ ÂNCORA DE VALOR ================ -->
+<section class="sec value" id="scn-valor" style="--b1:1;--b2:0;--b3:0"><div class="wrap">
+  <div class="val-hero rv">
+    <span class="vh-eyebrow">{{pv.valor.olho}}</span>
+    <span class="vh-num"><span id="vl-perday">{{ofertaPadrao.perDiaFmt}}</span><small>{{pv.valor.sufixo}}</small></span>
+    <span class="vh-sub">{{pv.valor.sub}}</span>
+    <span class="vh-rule" aria-hidden="true"></span>
+  </div>
+  <div class="vl-sv">
+    <div class="vlb" style="--bv:var(--b1,0)">
+      <span class="vl-ico"><svg><use href="#p-{{pv.valor.argumentos.0.icone}}"></use></svg></span>
+      <b>{{ofertaComparativoObj.precoFmt}}</b>
+      <span class="vl-lab">{{pv.valor.argumentos.0.rotulo}}</span>
+      <p>{{pv.valor.argumentos.0.texto}}</p>
+    </div>
+    <div class="vlb" style="--bv:var(--b2,0)">
+      <span class="vl-ico"><svg><use href="#p-{{pv.valor.argumentos.1.icone}}"></use></svg></span>
+      <b>{{pv.valor.argumentos.1.grande}}</b>
+      <span class="vl-lab">{{pv.valor.argumentos.1.rotulo}}</span>
+      <p>{{pv.valor.argumentos.1.texto}}</p>
+    </div>
+    <div class="vlb" style="--bv:var(--b3,0)">
+      <span class="vl-ico"><svg><use href="#p-{{pv.valor.argumentos.2.icone}}"></use></svg></span>
+      <b>{{pv.valor.argumentos.2.grande}}</b>
+      <span class="vl-lab">{{pv.valor.argumentos.2.rotulo}}</span>
+      <p>{{pv.valor.argumentos.2.texto}}</p>
+    </div>
+    <div class="vl-dots">
+      <button type="button" class="on" aria-label="{{pv.valor.argumentos.0.rotulo}}"></button>
+      <button type="button" aria-label="{{pv.valor.argumentos.1.rotulo}}"></button>
+      <button type="button" aria-label="{{pv.valor.argumentos.2.rotulo}}"></button>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================ KITS ================ -->
+<section class="sec" id="kits"><div class="wrap">
+  <div class="sec-hd rv"><p class="eyebrow">{{pv.kits.olho}}</p><h2>{{pv.kits.titulo}}</h2><p class="lead">{{pv.kits.lead}}</p></div>
+  <div class="kits">
+{{#each ofertas}}    <article class="kit rv {{#if destaque}}kit--hot{{/if}}">
+      {{#if selo}}<span class="kit-tag">{{selo}}</span>{{/if}}
+      <div class="kit-img"><img src="public/images/loja/kit.webp" width="640" height="640" alt="{{pv.kits.imagemAlt}}" loading="lazy" decoding="async"><span class="kit-qtd">{{rotulo}}</span></div>
+      <div class="kit-body">
+        <h3>{{rotulo}}</h3>
+        <p class="kit-desc">{{sub}}</p>
+        <div class="kit-price"><s>{{deFmt}}</s><b>{{precoFmt}}</b></div>
+        <p class="kit-day">{{$.hero.perDiaPrefixo}} {{perDiaFmt}} {{$.hero.perDiaSufixo}} · no Pix</p>
+        <p class="kit-save"><svg><use href="#p-check"></use></svg>{{$.pv.kits.economia}} {{economiaFmt}}</p>
+        {{#if brinde}}<p class="kit-gift">🎁 {{$.pv.brindeCurto}}</p>{{/if}}
+        <button class="btn buycta {{#if destaque}}{{else}}btn--soft{{/if}}" type="button" data-open-checkout data-kit="{{idx}}">{{$.pv.kits.cta}}</button>
+      </div>
+    </article>
+{{/each}}  </div>
+</div></section>
+
+<!-- ================ FAQ ================ -->
+<section class="sec sec--white" id="duvidas"><div class="wrap">
+  <div class="sec-hd rv"><h2>{{pv.faq.titulo}}</h2><p class="lead">{{pv.faq.lead}}</p></div>
+  <div class="faq-list">
+{{#each faq.itens}}    <details class="faq-item rv">
+      <summary>{{p}}<svg class="ic faq-ic"><use href="#p-plus"></use></svg></summary>
+      <div class="faq-body"><p>{{r}}</p></div>
+    </details>
+{{/each}}  </div>
+</div></section>
+
+<!-- ================ COMPRA SEGURA + CTA ================ -->
+<section class="sec"><div class="wrap">
+  <div class="guar-wrap">
+    <span class="coin c1" aria-hidden="true">7</span><span class="coin c2" aria-hidden="true">✓</span>
+    <div class="guar rv">
+      <div class="seal"><svg class="ic"><use href="#p-shield"></use></svg></div>
+      <h3>{{pv.seguro.titulo}} <span>{{pv.seguro.destaque}}</span></h3>
+      <p>{{pv.seguro.texto}}</p>
+    </div>
+  </div>
+  <div class="guar-cta"><a class="btn" href="#kits">{{pv.seguro.cta}}<svg class="ic"><use href="#p-chev"></use></svg></a></div>
+</div></section>
+
+</main>
+
+<!-- ================ FOOTER ================ -->
+<footer class="ft">
+  <div class="wrap ft-grid">
+    <div>
+      <div class="brand">{{marca.nome}}<span>.</span></div>
+      <p>{{pv.rodape.sobre}}</p>
+      <div class="ft-badges">{{#each pv.rodape.selos}}<span><svg class="ic"><use href="#p-{{icone}}"></use></svg> {{t}}</span>{{/each}}</div>
+    </div>
+    <div>
+      <h4>Atendimento</h4>
+      <a href="{{#if paginas.rastreioUrl}}{{paginas.rastreioUrl}}{{else}}/rastrear-pedido{{/if}}"><svg class="ic"><use href="#p-truck"></use></svg> Rastrear meu pedido</a>
+      <a href="#duvidas"><svg class="ic"><use href="#p-chat"></use></svg> Dúvidas frequentes</a>
+{{#if marca.email}}      <a href="mailto:{{marca.email}}"><svg class="ic"><use href="#p-chat"></use></svg> {{marca.email}}</a>
+{{/if}}{{#if marca.whatsapp}}      <a href="https://wa.me/{{marca.whatsapp}}" target="_blank" rel="noopener"><svg class="ic"><use href="#p-chat"></use></svg> WhatsApp {{marca.telefone}}</a>
+{{else}}{{#if marca.telefone}}      <a href="tel:{{marca.telefoneLink}}"><svg class="ic"><use href="#p-chat"></use></svg> {{marca.telefone}}</a>
+{{/if}}{{/if}}    </div>
+    <div>
+      <h4>Institucional</h4>
+      <a href="/privacidade"><svg class="ic"><use href="#p-check"></use></svg> Política de privacidade</a>
+      <a href="/termos"><svg class="ic"><use href="#p-check"></use></svg> Termos de uso</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>{{legal.disclaimer}}</p>
+    <span>{{marca.copyright}}</span>
+  </div>
+</footer>
+
+<!-- ================ STICKY CTA ================
+     O botão daqui NÃO leva `buycta` (ver app.js, pisca-pisca). -->
+<div class="stickycta" aria-label="Comprar"><div class="wrap">
+  <div class="sk-kits" role="radiogroup" aria-label="Escolha a quantidade de kits">{{#each ofertas}}<button type="button" role="radio" aria-checked="{{checked}}" class="sk-kit {{sel}}" data-idx="{{idx}}"><span>{{rotuloCurto}}</span><b>{{precoFmt}}</b></button>{{/each}}</div>
+  <button class="btn" type="button" data-open-checkout>{{pv.barra.cta}}</button>
+</div></div>
+
+<!-- Player dos vídeos "Quem usa" (abre com som ao tocar numa bolinha) -->
+{{#if pv.ugc.videos}}<div class="ugc-modal" data-ugc-modal hidden role="dialog" aria-modal="true" aria-label="Vídeo">
+  <button type="button" class="ugc-x" data-ugc-fechar aria-label="Fechar vídeo">×</button>
+  <video data-ugc-video playsinline controls preload="none"></video>
+  <button type="button" class="btn ugc-cta" data-ugc-comprar>{{pv.ugc.cta}}</button>
+</div>{{/if}}
+
+<!-- ================ CHAT DE ATENDIMENTO ================
+     Balão servido pelo projeto de ENTREGA (template-entrega-pix, public/chat.js).
+     Vazio em `atendimento.chatUrl` = sem chat. data-evitar: o balão sobe acima
+     da barra fixa de compra quando ela aparece. -->
+{{#if atendimento.chatUrl}}<script src="{{atendimento.chatUrl}}/chat.js" data-api="{{atendimento.chatUrl}}/api/atendimento" data-evitar=".stickycta" defer></script>{{/if}}

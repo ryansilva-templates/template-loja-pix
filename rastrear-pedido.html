@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rastrear meu pedido — Sua Loja</title>
+<meta name="description" content="Como acompanhar o seu pedido de Nome do Produto depois do pagamento: número do pedido, prazos e o que fazer se não chegou nenhum aviso.">
+<meta name="theme-color" content="#8C2456">
+<link rel="canonical" href="https://PREENCHER.com.br/rastrear-pedido">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Rastrear meu pedido — Sua Loja">
+<meta property="og:description" content="Como acompanhar o seu pedido de Nome do Produto depois do pagamento: número do pedido, prazos e o que fazer se não chegou nenhum aviso.">
+<meta property="og:url" content="https://PREENCHER.com.br/rastrear-pedido">
+<link rel="stylesheet" href="public/fonts.css">
+<style>
+/* Folha usada só pelas páginas institucionais (termos, privacidade, rastreio).
+   Elas não carregam o bundle de 160KB da LP: são páginas de texto, e o peso
+   ali não converte nada. Só os tokens da marca e tipografia legível. */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ac:#e5709a;--ac-d:#c94f7c;--ac-t:#b03d68;--ac-l:#fdf1f5;
+  --ink:#2a0e1e;--muted:#7a5568;--bg:#fffbfc;--border:#f0dce4;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  line-height:1.65;font-size:16px;
+}
+a{color:var(--ac-t)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ac-d);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 6px 24px rgba(42,14,30,.18)}
+
+.top{background:#fff;border-bottom:1px solid var(--border)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.brand{font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.brand span{color:var(--ac)}
+.top a.volta{
+  font-size:.82rem;font-weight:700;text-decoration:none;color:var(--ac-t);
+  display:inline-flex;align-items:center;min-height:44px;padding:0 4px
+}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+main{padding:38px 0 64px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.15;letter-spacing:-.02em}
+.upd{margin-top:10px;font-size:.82rem;color:var(--muted);font-weight:600}
+h2{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,3.4vw,1.4rem);
+  margin:36px 0 10px;line-height:1.25;letter-spacing:-.01em
+}
+h3{font-size:1rem;font-weight:800;margin:22px 0 6px}
+p,li{color:#422134}
+p+p{margin-top:12px}
+ul,ol{margin:12px 0 0 22px}
+li+li{margin-top:7px}
+strong,b{font-weight:800;color:var(--ink)}
+
+.lead{margin-top:16px;font-size:1.03rem;color:#422134}
+.card{
+  margin-top:20px;background:#fff;border:1px solid var(--border);
+  border-radius:16px;padding:18px 20px
+}
+.card.warn{background:var(--ac-l);border-color:#f3c9da}
+.card h3{margin-top:0}
+
+.contato{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.contato a{
+  display:inline-flex;align-items:center;min-height:46px;padding:0 18px;
+  border-radius:100px;text-decoration:none;font-weight:700;font-size:.9rem;
+  background:linear-gradient(140deg,var(--ac),var(--ac-d));color:#fff
+}
+.contato a.sec{background:#fff;border:1.5px solid var(--border);color:var(--ac-t)}
+
+.ft{border-top:1px solid var(--border);background:#fff;padding:24px 0 34px;margin-top:20px}
+.ft .wrap{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.ft a{font-size:.86rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.ft .dis{width:100%;font-size:.74rem;color:var(--muted);line-height:1.55}
+
+/* ===== paleta gerada de config/produto.js ===== */
+:root{
+  --pp:#FFFBFC;
+  --sf:#FFFFFF;
+  --sf2:#FDF3F7;
+  --ln:#F1E2E9;
+  --ln2:#E5CCD8;
+  --t1:#2A1220;
+  --t2:#4B3442;
+  --t3:#6B5463;
+  --rs:#8C2456;
+  --rs-d:#6C1A42;
+  --rs-w:#FBEEF4;
+  --rs-ln:#F4D6E4;
+  --au:#9A6A0E;
+  --gr:#13703A;
+  --dsp:'Fraunces',Georgia,serif;
+  --txt:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+
+/* ===== tokens legados (base.css/add.css) apontando para a paleta ===== */
+:root{
+  --ac:var(--rs);--ac-d:var(--rs-d);--ac-l:var(--rs-w);--ac-t:var(--rs);
+  --rosa:var(--rs);--rosa-d:var(--rs-d);--blush-l:var(--rs-w);--blush:var(--rs-ln);
+  --ink:var(--t1);--muted:var(--t3);--bg:var(--pp);--porc:var(--pp);
+  --border:var(--ln);--line:var(--ln);
+  --ok:var(--gr);--ok-t:var(--gr);--gold:var(--au);
+  --serif:var(--dsp);--sans:var(--txt);
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Sua Loja<span></span></a>
+    <a class="volta" href="/">&larr; Voltar para a página do kit</a>
+  </div>
+</header>
+<main id="conteudo"><div class="wrap">
+<h1>Rastrear meu pedido</h1>
+
+<!-- Enquanto `paginas.rastreioUrl` estiver vazio no config, o botão de rastreio
+     não aparece e a página só explica o processo. Preencha com o link da página
+     /rastrear-pedido do projeto de entrega. -->
+
+<p class="lead">Depois que o Pix é confirmado, o seu pedido entra na fila de separação
+automaticamente. Para acompanhar, o que vale é o <b>número do pedido</b> que aparece na tela
+de confirmação do pagamento.</p>
+
+
+<div class="card">
+  <h3>Onde achar o número do pedido</h3>
+  <p>Ele aparece na tela logo depois que o pagamento é confirmado, no formato
+  <b>xx-XXXXX-XXXXXX</b>. Anote ou tire um print: é com ele que a
+  gente localiza a sua compra.</p>
+</div>
+
+<h2>O pagamento não foi confirmado?</h2>
+<ul>
+  <li><b>Confira se o Pix saiu do seu banco.</b> O pedido só entra na fila de envio depois
+  que o pagamento cai.</li>
+  <li><b>O código Pix pode ter vencido.</b> A cobrança vale por cerca de
+  <b>15 minutos</b>; passado esse prazo ela deixa de funcionar e nada é cobrado.
+  É só voltar à página e gerar um novo.</li>
+</ul>
+
+<h2>Prazos de entrega</h2>
+<ul>
+  <li><b>Frete grátis:</b> 5 a 9 dias úteis após o despacho.</li>
+  <li><b>Frete expresso:</b> 1 a 3 dias úteis após o despacho.</li>
+</ul>
+<p>Os prazos valem a partir do despacho, não da compra, e podem variar por região,
+feriado ou evento fora do nosso controle.</p>
+
+
+</div></main>
+<footer class="ft">
+  <div class="wrap">
+    <a href="/">Página do kit</a>
+    <a href="/termos">Termos de uso</a>
+    <a href="/privacidade">Política de privacidade</a>
+    <a href="/rastrear-pedido">Rastrear meu pedido</a>
+    
+    
+    <p class="dis">Resultados variam de pessoa para pessoa. Este site não é afiliado ao Facebook, Instagram ou Meta.</p>
+  </div>
+</footer>
+</body>
+</html>

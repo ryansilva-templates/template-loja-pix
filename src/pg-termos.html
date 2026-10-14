@@ -1,0 +1,87 @@
+<!--titulo: Termos de uso-->
+<!--desc: Condições de compra de {{legal.produtoNome}} na {{marca.nomeLegal}}: preço, pagamento por Pix, prazo de entrega e direito de arrependimento.-->
+<h1>Termos de uso e condições de compra</h1>
+<p class="upd">Última atualização: 13 de outubro de 2026</p>
+
+<p class="lead">Estas são as regras da compra feita nesta página. Ao finalizar um pedido
+você concorda com elas. Escrevemos em português claro de propósito: se alguma coisa aqui
+não estiver clara, fale com a gente antes de comprar.</p>
+
+<div class="card warn">
+  <h3>Identificação do vendedor</h3>
+  <p>A venda é feita pela empresa que opera a marca <b>{{seo.siteName}}</b>{{#if legal.revendaMarca}}, loja independente que revende produtos da marca <b>{{legal.revendaMarca}}</b>. A {{seo.siteName}} não é o fabricante e não pertence à {{legal.revendaMarca}}{{/if}}.{{#if marca.email}} Atendimento por
+  <a href="mailto:{{marca.email}}">{{marca.email}}</a>{{#if marca.telefone}} e
+  <a href="tel:{{marca.telefoneLink}}">{{marca.telefone}}</a>{{/if}}.{{/if}}</p>
+</div>
+
+<h2>1. O que está sendo vendido</h2>
+<p>O kit <b>{{legal.produtoNome}}</b> é composto por:</p>
+<ul>
+{{#each checkout.incluso}}  <li>{{qtd}}× {{nome}}</li>
+{{/each}}</ul>
+<p>Os kits com mais unidades contêm a quantidade indicada de cada item, como descrito na
+página de venda.</p>
+
+<h2>2. Natureza do produto</h2>
+<p>Resultados variam de pessoa para pessoa e dependem do uso correto e contínuo. Siga as
+instruções do rótulo. Se você tem alguma condição de saúde, está grávida ou amamentando,
+converse com seu médico antes de começar.</p>
+
+<h2>3. Preço e pagamento</h2>
+<ul>
+  <li>Os preços em vigor são os exibidos na página no momento da compra, e o valor
+  cobrado é sempre o que aparece na tela de pagamento antes de você confirmar.</li>
+  <li>O pagamento é feito por <b>Pix</b>, gerado na própria página e processado pela
+  <b>Korvex</b>. Não há cobrança por cartão ou boleto nesta loja.</li>
+  <li>O código Pix tem prazo de validade (hoje, cerca de {{checkout.validadePix}}). Passado esse prazo sem pagamento, o pedido é
+  cancelado automaticamente e nada é cobrado.</li>
+  <li>Preços promocionais valem enquanto durar a promoção anunciada ou o estoque.</li>
+</ul>
+
+<h2>4. Entrega</h2>
+<ul>
+  <li><b>Frete grátis</b> para todo o Brasil, sem valor mínimo, com prazo estimado de
+  <b>{{checkout.fretePadraoPrazo}}</b> após a postagem.</li>
+  <li>Na tela de pagamento você pode somar o <b>frete expresso por {{freteExpressoFmt}}</b>, com prazo
+  estimado de <b>{{checkout.freteExpressoPrazo}}</b> após a postagem.</li>
+  <li>O pedido entra na fila de separação assim que o Pix é confirmado, e o
+  acompanhamento é feito pelo número do pedido exibido na confirmação.</li>
+  <li>Os prazos são estimativas dos Correios e da transportadora e podem variar por
+  região, greve, feriado ou evento fora do nosso controle.</li>
+  <li>É responsabilidade sua conferir o endereço informado. Pedido devolvido por endereço
+  incorreto ou por ausência de recebedor pode ser reenviado mediante novo frete.</li>
+</ul>
+
+<h2>5. Direito de arrependimento</h2>
+<p>O artigo 49 do Código de Defesa do Consumidor dá a
+você <b>7 dias corridos</b>, contados do recebimento, para desistir de uma compra feita
+pela internet, com devolução integral do que pagou, inclusive o frete. É só avisar pelos
+nossos canais dentro desse prazo.</p>
+
+<h2>6. Produto com defeito</h2>
+<p>Se o produto chegar danificado, violado, vencido ou diferente do que foi comprado,
+avise em até 7 dias corridos do recebimento, com fotos. Fazemos a troca ou o reembolso
+integral, sem custo de frete para você.</p>
+
+<h2>7. Uso desta página</h2>
+<p>O conteúdo desta página — textos, fotos, vídeos e layout — é protegido por direitos
+autorais e não pode ser copiado ou reproduzido sem autorização. {{#if legal.revendaMarca}}As fotos dos produtos
+são do fabricante. {{legal.revendaMarca}} é marca de seu respectivo titular.{{/if}}</p>
+<p>Este site não é afiliado ao Facebook, ao Instagram nem à Meta Platforms, e não é
+endossado por eles de nenhuma forma.</p>
+
+<h2>8. Privacidade</h2>
+<p>O tratamento dos seus dados está descrito na
+<a href="/privacidade">Política de privacidade</a>, que faz parte destes termos.</p>
+
+<h2>10. Foro e legislação</h2>
+<p>Aplica-se a legislação brasileira, em especial o Código de Defesa do Consumidor
+(Lei 8.078/1990) e a Lei Geral de Proteção de Dados (Lei 13.709/2018). Fica eleito o foro
+do domicílio do consumidor para dirimir eventuais controvérsias.</p>
+
+<h2>11. Contato</h2>
+{{#if marca.email}}<div class="contato">
+  <a href="mailto:{{marca.email}}">Falar por e-mail</a>
+{{#if marca.telefone}}  <a class="sec" href="tel:{{marca.telefoneLink}}">{{marca.telefone}}</a>
+{{/if}}</div>
+{{/if}}

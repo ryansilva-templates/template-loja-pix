@@ -1,0 +1,80 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "outputDirectory": ".",
+  "buildCommand": "echo \"index.html ja vem pronto do repositorio\"",
+  "regions": [
+    "gru1"
+  ],
+  "headers": [
+    {
+      "source": "/public/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/config/:caminho*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/catalogo.js",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/build.js",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/dev-server.js",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/package.json",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/package-lock.json",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/CHANGELOG.md",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/PROMPT.md",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/UPGRADE.md",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}
